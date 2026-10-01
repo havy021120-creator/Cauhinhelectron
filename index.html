@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="vi"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20261001-05-b7952c1","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YACgEZulLoA,0","Arial Narrow":"YAGyDvJ_4Ts,0","Arial Rounded MT Bold":"YAFcfoaHu-s,0","Arial":"YAGyDvJ_4Ts,0","Avenir Next":"YAFcfmNq6UY,0","Baloo 2":"YADK30bC6HQ,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAFcfvtOAUY,1","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHQutsX00Q,0","Hanken Grotesk":"YAFcfhwp99E,0","Helvetica Neue":"YAFcf6CtJfI,0","Helvetica":"YAFcf6CtJfI,0","IBM Plex Mono":"YAFdJkmvhGI,0","Impact":"YAFcfnjI7Vk,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YADK3zbC6RM,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Oswald":"YACgEQY10lw,0","Pacifico":"YADLjORQ1u4,0","Phantom Sans":"YAFdJvgJ5TU,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAGvf3_u0_Q,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Source Serif 4":"YACgEfdj394,0","Space Grotesk":"YADZ-dYEmhg,0","Space Mono":"YADW1-vpsoc,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","UV Display":"YAEdVfSSpYo,0","UV Sans":"YAFdJvgJ5TU,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YAD1aFjegN8,0","ui-sans-serif":"YACkoD1yZN0,0"}}');</script><script src="/_sdk/6542d56fbfe7a3eb.telemetry_sdk.js" integrity="sha512-ECdM0nK7EkwDuOqho2qxgyRQXyBHk9hZqRKMBr+Xsu6zjeHlt+qkO2N2YRiHN7Kg4e1fEHDhjIp4bGJYVypv1g=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khách Sạn Electron</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#104d63;
+      --cyan:#1197be;
+      --mint:#37b98e;
+      --lime:#caec53;
+      --paper:#f8ffff;
+      --violet:#6d4d98;
+    }
+    *{box-sizing:border-box}
+    body{
+      width:100%;
+      min-height:calc(100 * min(var(--vh,1vh),1vh));
+      margin:0;
+      overflow-x:hidden;
+      font-family:"Be Vietnam Pro",sans-serif;
+      color:var(--ink);
+    }
+    button{font:inherit}
+    button:focus-visible{
+      outline:3px solid #f8c850;
+      outline-offset:3px;
+    }
+    .app-shell{
+      width:100%;
+      min-height:calc(100 * min(var(--vh,1vh),1vh));
+      background:linear-gradient(180deg,#eafcff 0%,#c8f6ef 48%,#eefdb8 100%);
+      padding:clamp(14px,2vw,34px);
+    }
+    .deck-frame{
+      width:100%;
+      max-width:1920px;
+      margin:0 auto;
+      position:relative;
+    }
+    .deck-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:14px;
+    }
+    .title-font{font-family:"Playfair Display",serif}
+    .slide-controls{
+      display:flex;
+      gap:8px;
+      border-radius:999px;
+      padding:6px;
+      background:rgba(255,255,255,.73);
+      border:1px solid rgba(112,208,207,.8);
+      box-shadow:0 8px 22px rgba(10,92,108,.12);
+    }
+    .slide-control{
+      border:0;
+      border-radius:999px;
+      padding:9px 16px;
+      color:var(--ink);
+      background:transparent;
+      font-weight:800;
+      font-size:.78rem;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .slide-control.is-active{
+      color:#fff;
+      background:linear-gradient(135deg,#078bb5,#38bb86);
+      box-shadow:0 5px 12px rgba(10,145,181,.28);
+    }
+    .presentation-slide{
+      position:relative;
+      display:none;
+      width:100%;
+      min-height:1080px;
+      aspect-ratio:16/9;
+      overflow:hidden;
+      border:1px solid rgba(116,215,213,.8);
+      border-radius:28px;
+      box-shadow:0 28px 56px rgba(8,83,103,.20);
+      animation:slideIn .4s ease both;
+    }
+    .presentation-slide.is-active{display:block}
+    .slide-one{
+      background:linear-gradient(135deg,#edffff 0%,#d6fbf6 48%,#efffb9 100%);
+    }
+    .slide-two{
+      background:linear-gradient(135deg,#edffff 0%,#d6fbf6 48%,#efffb9 100%);
+    }
+    .slide-watermark{
+      position:absolute;
+      right:-5%;
+      bottom:-20%;
+      width:48%;
+      height:74%;
+      border:42px solid rgba(255,255,255,.14);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .slide-one-grid{
+      position:relative;
+      z-index:1;
+      height:100%;
+      padding:clamp(42px,4.8vw,92px);
+      display:grid;
+      grid-template-rows:auto minmax(390px,1fr) auto;
+      gap:clamp(28px,3vw,54px);
+    }
+    .kicker{
+      margin:0 0 8px;
+      font-size:clamp(.72rem,1vw,1.1rem);
+      font-weight:800;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+    }
+    .slide-title{
+      max-width:920px;
+      margin:0;
+      line-height:1.06;
+    }
+    .slide-intro{
+      max-width:870px;
+      margin:16px 0 0;
+      line-height:1.65;
+    }
+    .rules-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:18px;
+      align-items:stretch;
+    }
+    .rule-card{
+      position:relative;
+      overflow:hidden;
+      min-height:205px;
+      padding:22px;
+      border:1px solid #a8e4df;
+      border-radius:23px;
+      background:rgba(255,255,255,.82);
+      box-shadow:0 14px 30px rgba(7,104,124,.10);
+    }
+    .rule-card:nth-child(1){background:linear-gradient(145deg,#ffffff,#d9f7ff)}
+    .rule-card:nth-child(2){background:linear-gradient(145deg,#ffffff,#ddf8ed)}
+    .rule-card:nth-child(3){background:linear-gradient(145deg,#ffffff,#f0edff)}
+    .rule-card:nth-child(4){background:linear-gradient(145deg,#ffffff,#f3facb)}
+    .rule-index{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:43px;
+      height:43px;
+      border-radius:13px;
+      color:#fff;
+      background:linear-gradient(135deg,#078bb5,#43bf82);
+      font-size:.85rem;
+      font-weight:800;
+    }
+    .rule-icon{
+      position:absolute;
+      top:26px;
+      right:26px;
+      width:34px;
+      height:34px;
+      color:#078bb5;
+      stroke-width:2.2;
+    }
+    .rule-card h2{margin:24px 0 12px;line-height:1.15}
+    .rule-card p{margin:0;line-height:1.7}
+    .staircase-panel{
+      display:grid;
+      grid-template-columns:.62fr 2.28fr;
+      gap:30px;
+      align-items:center;
+      padding:30px 32px;
+      border:1px solid #92ddd7;
+      border-radius:24px;
+      background:rgba(255,255,255,.77);
+      box-shadow:0 12px 25px rgba(9,104,122,.10);
+    }
+    .staircase-copy p{margin:8px 0 0;line-height:1.55}
+    .staircase-route{
+      display:flex;
+      align-items:center;
+      min-width:0;
+      gap:0;
+      overflow:hidden;
+      padding:28px 8px;
+    }
+    .energy-stop{
+      position:relative;
+      z-index:2;
+      flex:0 0 auto;
+      min-width:62px;
+      height:44px;
+      border:2px solid #3caab4;
+      border-radius:12px;
+      color:var(--ink);
+      background:#fff;
+      box-shadow:0 4px 9px rgba(7,112,130,.11);
+      font-weight:800;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .energy-stop:nth-of-type(4n+1){transform:translateY(12px)}
+    .energy-stop:nth-of-type(4n+3){transform:translateY(-12px)}
+    .energy-stop.is-highlighted,.energy-stop:hover{
+      color:#fff;
+      border-color:#078bb5;
+      background:linear-gradient(135deg,#078bb5,#42bf82);
+      transform:translateY(-2px) scale(1.07);
+    }
+    .energy-link{
+      position:relative;
+      z-index:1;
+      flex:1 1 30px;
+      min-width:22px;
+      height:2px;
+      background:#4cabb5;
+      transform:rotate(-22deg);
+    }
+    .energy-link:nth-of-type(4n+2){transform:rotate(22deg)}
+    .energy-link:after{
+      content:"";
+      position:absolute;
+      right:-1px;
+      top:-4px;
+      width:8px;
+      height:8px;
+      border-top:2px solid #4cabb5;
+      border-right:2px solid #4cabb5;
+      transform:rotate(45deg);
+    }
+    .slide-two-art{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.13;
+      mix-blend-mode:multiply;
+    }
+    .slide-two-shade{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,rgba(237,255,255,.88),rgba(214,251,246,.62) 62%,rgba(239,251,185,.45));
+    }
+    .slide-two-grid{
+      position:relative;
+      z-index:1;
+      height:100%;
+      padding:clamp(28px,3vw,58px);
+      display:grid;
+      grid-template-columns:.62fr 1.38fr;
+      grid-template-rows:auto minmax(0,1fr) auto;
+      gap:18px 28px;
+    }
+    .slide-two-heading{grid-column:1/-1}
+    .light-kicker{margin:0 0 8px;font-size:clamp(.72rem,1vw,1.1rem);font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+    .light-title{margin:0;max-width:950px;line-height:1.06}
+    .light-intro{max-width:760px;margin:14px 0 0;line-height:1.6}
+    .lobby-card{
+      position:relative;
+      min-height:0;
+      height:100%;
+      overflow:hidden;
+      border:1px solid rgba(222,255,248,.72);
+      border-radius:25px;
+      background:rgba(224,255,246,.82);
+      box-shadow:0 18px 36px rgba(2,45,65,.25);
+    }
+    .lobby-card img{
+      width:100%;
+      height:45%;
+      object-fit:cover;
+    }
+    .lobby-content{padding:25px}
+    .element-picker{display:grid;gap:7px;margin-top:20px}
+    .element-picker label{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#426d72}
+    .element-picker select{width:100%;padding:10px 12px;border:1px solid #8dd5d2;border-radius:12px;background:#fff;color:var(--ink);font-weight:700}
+    .element-picker p{margin:0;font-size:.75rem;color:#526470;line-height:1.4}
+    .electron-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;min-height:42px}
+    .electron-dot{cursor:grab;user-select:none}
+    .electron-dot:active{cursor:grabbing}
+    .electron-dot.is-placed{display:none}
+    .orbital-room.is-drag-over{outline:3px solid #f8c850;outline-offset:3px;transform:scale(1.08)}
+    .electron-dot{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      color:#fff;
+      background:radial-gradient(circle at 30% 23%,#fff,#d8fff0 14%,#30bd8b 35%,#087eaf 78%);
+      box-shadow:0 4px 10px rgba(3,90,124,.3);
+      font-weight:800;
+      animation:electronArrive .45s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .orbital-electrons{position:relative;z-index:3;display:flex;justify-content:center;gap:2px;margin-top:4px;min-height:18px}
+    .spin-electron{font-size:1.05rem;line-height:1;color:#087eaf;font-weight:900;animation:spinDrop .35s ease both}
+    .spin-electron.second{color:#6d4d98}
+    .orbital-room.is-full{background:linear-gradient(145deg,#efffe7,#d9f6ff)}
+    @keyframes electronArrive{from{opacity:0;transform:translateY(12px) scale(.65)}to{opacity:1;transform:none}}
+    @keyframes spinDrop{from{opacity:0;transform:translateY(-8px) scale(.5)}to{opacity:1;transform:none}}
+    .hotel-board{
+      overflow:hidden;
+      border:1px solid rgba(221,255,248,.7);
+      border-radius:25px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 18px 36px rgba(2,45,65,.25);
+    }
+    .hotel-board-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      padding:19px 24px;
+      color:#fff;
+      background:linear-gradient(90deg,#057eab,#0eb8bd 63%,#55c875);
+    }
+    .hotel-board-header h2{margin:3px 0 0;line-height:1.1}
+    .hotel-board-header p{margin:0}
+    .hotel-floors{padding:14px 18px 18px}
+    .floor-row{
+      display:grid;
+      grid-template-columns:112px minmax(0,1fr);
+      gap:16px;
+      padding:10px 0;
+      border-bottom:1px solid #d6f0ef;
+    }
+    .floor-row:last-child{border-bottom:0}
+    .floor-label{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:110px;
+      padding:9px;
+      border-radius:16px;
+      color:#fff;
+      background:linear-gradient(180deg,#3dc38c,#0785b1);
+      text-align:center;
+      font-size:.71rem;
+      font-weight:800;
+      letter-spacing:.07em;
+    }
+    .subshell-row{display:flex;gap:10px;flex-wrap:wrap}
+    .subshell-box{
+      flex:1 1 180px;
+      padding:14px;
+      border:1px solid #b5e7e7;
+      border-left:5px solid #52b9c0;
+      border-radius:14px;
+      background:#f7ffff;
+    }
+    .subshell-box h3{margin:0;font-size:.68rem;font-weight:800;color:#49376f;line-height:1.2}
+    .room-row{display:flex;gap:14px;margin-top:10px}
+    .orbital-room{
+      position:relative;
+      flex:0 0 76px;
+      width:76px;
+      min-width:76px;
+      height:64px;
+      overflow:hidden;
+      border:2px solid #9c91aa;
+      border-radius:7px 7px 3px 3px;
+      color:#776c81;
+      background:#eeeaf1;
+      font-size:.58rem;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .orbital-room:after{
+      content:"";
+      position:absolute;
+      inset:5px;
+      border-radius:4px;
+      background:linear-gradient(90deg,rgba(0,0,0,.08) 50%,transparent 50%);
+    }
+    .orbital-room.is-open{
+      color:#276e5e;
+      border-color:#35b889;
+      background:linear-gradient(145deg,#fffce3,#f6defa);
+      box-shadow:0 4px 10px rgba(150,92,174,.16);
+    }
+    .orbital-room.is-open:before{
+      content:"";
+      position:relative;
+      z-index:1;
+    }
+    .configuration-strip{
+      grid-column:1/-1;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:25px;
+      align-items:center;
+      padding:18px 24px;
+      border:1px solid rgba(221,255,248,.65);
+      border-radius:20px;
+      color:#fff;
+      background:rgba(3,68,88,.62);
+      backdrop-filter:blur(12px);
+    }
+    .configuration-strip h2{margin:0;line-height:1.1}
+    .configuration-strip p{margin:7px 0 0;line-height:1.55}
+    .configuration-code{
+      padding:16px 20px;
+      visibility:hidden;
+      opacity:0;
+      transition:opacity .35s ease;
+    }
+    .configuration-code.is-revealed{
+      visibility:visible;
+      opacity:1;
+    }
+    .configuration-code{
+      border-radius:15px;
+      color:#d9ffec;
+      background:#173b59;
+      font-family:"Be Vietnam Pro",sans-serif;
+      font-size:clamp(1rem,1.4vw,1.5rem);
+      font-weight:800;
+      letter-spacing:.06em;
+      white-space:nowrap;
+    }
+    .slide-dots{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-top:14px;
+    }
+    .slide-dot{
+      width:10px;
+      height:10px;
+      padding:0;
+      border:0;
+      border-radius:999px;
+      background:#79bfc4;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .slide-dot.is-active{width:30px;background:#087fa9}
+    @keyframes slideIn{
+      from{opacity:0;transform:translateY(12px)}
+      to{opacity:1;transform:none}
+    }
+    @media (max-width:900px){
+      .presentation-slide{min-height:unset;aspect-ratio:auto}
+      .slide-one-grid,.slide-two-grid{min-height:900px}
+      .rules-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .slide-two-grid{grid-template-columns:1fr}
+      .slide-two-heading,.configuration-strip{grid-column:auto}
+    }
+    @media (max-width:620px){
+      .deck-topbar{align-items:flex-start;flex-direction:column}
+      .slide-one-grid,.slide-two-grid{padding:28px 20px;min-height:1050px}
+      .rules-grid{grid-template-columns:1fr}
+      .staircase-panel,.configuration-strip{grid-template-columns:1fr}
+      .staircase-route{overflow-x:auto}
+      .slide-two-grid{min-height:1180px}
+    }
+  </style>
+  <script src="/_sdk/6c2ecc939521f244.data_sdk.js" type="text/javascript" integrity="sha512-gRx8s+XsZDN6mSIQu2sivLZysbV0WHhb5kXNUWlgVb5lCMU1foJYukyMEDPv8Tnoocb8iwqB4XdRrWc7oEGzIQ=="></script>
+  <script src="/_sdk/ab4336f91e694f96.resizing_sdk.js" type="text/javascript" integrity="sha512-cxmeUrBrNlwwLr+tEu/iwM5F3boeK4qDMoH3QjUPqJptkO5NkaDVhQvyIHIn+3EflI5/uubWzkSA78B1tCswgA=="></script>
+ </head>
+ <body data-template-id="__page-root" style="background: linear-gradient(rgb(234, 252, 255) 0%, rgb(200, 246, 239) 48%, rgb(238, 253, 184) 100%);">
+  <main class="app-shell">
+   <div class="deck-frame">
+    <header class="deck-topbar">
+     <p data-template-id="deck-label" class="canva-text m-0 font-extrabold uppercase tracking-[.16em]" style="color: rgb(16, 77, 99); font-weight: 800; font-style: normal; font-size: 16px; letter-spacing: 0.08rem;">KHÁCH SẠN ELECTRON · BỘ SLIDE HỌC TẬP</p>
+     <nav class="slide-controls" aria-label="Điều hướng slide"><button data-template-id="slide-one-button" class="canva-button slide-control is-active" type="button" data-slide-target="slide-one" aria-pressed="true" style="background: linear-gradient(135deg, rgb(7, 139, 181), rgb(56, 187, 134)); color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">01 · Nội quy</button> <button data-template-id="slide-two-button" class="canva-button slide-control" type="button" data-slide-target="slide-two" aria-pressed="false" style="background: transparent; color: rgb(16, 77, 99); font-weight: 800; font-style: normal; font-size: 16px;">02 · Khách sạn</button>
+     </nav>
+    </header>
+    <section id="slide-one" class="presentation-slide slide-one is-active" aria-label="Slide 1: Nội quy nhận phòng electron">
+     <div class="slide-watermark"></div>
+     <div class="slide-one-grid">
+      <header>
+       <p data-template-id="slide-one-kicker" class="canva-text kicker" style="color: rgb(109, 77, 152); font-weight: 800; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">SLIDE 01 · HƯỚNG DẪN NHẬN PHÒNG</p>
+       <h1 data-template-id="slide-one-title" class="canva-text title-font slide-title" style="color: rgb(16, 77, 99); font-weight: 800; font-style: normal; font-size: 40px;">Nội quy xếp phòng electron</h1>
+       <p data-template-id="slide-one-intro" class="canva-text slide-intro" style="color: rgb(53, 97, 110); font-weight: 400; font-style: normal; font-size: 20px; line-height: 1.6;">Hãy xem mỗi orbital như một phòng trong khách sạn. Electron chỉ nhận phòng đúng thứ tự, đúng sức chứa và tuân theo các quy tắc dưới đây.</p>
+      </header>
+      <section class="rules-grid" aria-label="Các nội quy xếp phòng">
+       <article data-template-id="rule-one-card" class="canva-card rule-card" style="background: linear-gradient(145deg, rgb(255, 255, 255), rgb(217, 247, 255));">
+        <div class="rule-index">
+         01
+        </div><i data-lucide="arrow-down-to-line" class="rule-icon" aria-hidden="true"></i>
+        <h2 data-template-id="rule-one-title" class="canva-text title-font" style="color: rgb(16, 77, 99); font-weight: 700; font-style: normal; font-size: 26px;">Ưu tiên phòng thấp</h2>
+        <p data-template-id="rule-one-copy" class="canva-text" style="color: rgb(68, 103, 115); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.6;">Electron luôn vào orbital có mức năng lượng thấp hơn trước. Đây là nguyên lý vững bền.</p>
+       </article>
+       <article data-template-id="rule-two-card" class="canva-card rule-card" style="background: linear-gradient(145deg, rgb(255, 255, 255), rgb(221, 248, 237));">
+        <div class="rule-index">
+         02
+        </div><i data-lucide="circle-dot" class="rule-icon" aria-hidden="true"></i>
+        <h2 data-template-id="rule-two-title" class="canva-text title-font" style="color: rgb(16, 77, 99); font-weight: 700; font-style: normal; font-size: 26px;">Mỗi phòng tối đa 2e</h2>
+        <p data-template-id="rule-two-copy" class="canva-text" style="color: rgb(68, 103, 115); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.6;">Một orbital chỉ chứa tối đa hai electron, và hai electron này phải có spin ngược chiều.</p>
+       </article>
+       <article data-template-id="rule-three-card" class="canva-card rule-card" style="background: linear-gradient(145deg, rgb(255, 255, 255), rgb(240, 237, 255));">
+        <div class="rule-index">
+         03
+        </div><i data-lucide="shuffle" class="rule-icon" aria-hidden="true"></i>
+        <h2 data-template-id="rule-three-title" class="canva-text title-font" style="color: rgb(16, 77, 99); font-weight: 700; font-style: normal; font-size: 26px;">Ở riêng trước</h2>
+        <p data-template-id="rule-three-copy" class="canva-text" style="color: rgb(68, 103, 115); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.6;">Các orbital cùng mức năng lượng sẽ được xếp một electron vào từng phòng trước khi ghép đôi.</p>
+       </article>
+       <article data-template-id="rule-four-card" class="canva-card rule-card" style="background: linear-gradient(145deg, rgb(255, 255, 255), rgb(243, 250, 203));">
+        <div class="rule-index">
+         04
+        </div><i data-lucide="layers-3" class="rule-icon" aria-hidden="true"></i>
+        <h2 data-template-id="rule-four-title" class="canva-text title-font" style="color: rgb(16, 77, 99); font-weight: 700; font-style: normal; font-size: 26px;">Nhớ sức chứa phân lớp</h2>
+        <p data-template-id="rule-four-copy" class="canva-text" style="color: rgb(68, 103, 115); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.6;">Phân lớp s có 2e, p có 6e, d có 10e và f có 14e khi tất cả các phòng đều đầy.</p>
+       </article>
+      </section>
+      <section data-template-id="staircase-panel" class="canva-panel staircase-panel" style="background: rgba(255, 255, 255, 0.77);">
+       <div class="staircase-copy">
+        <h2 data-template-id="staircase-title" class="canva-text title-font m-0" style="color: rgb(16, 77, 99); font-weight: 700; font-style: normal; font-size: 24px;">Cầu thang chéo nhận phòng</h2>
+        <p data-template-id="staircase-copy" class="canva-text" style="color: rgb(66, 109, 114); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.55;">Đi theo các mũi tên để xác định thứ tự mức năng lượng: 1s → 2s → 2p → 3s → 3p → 4s → 3d → 4p → 4d.</p>
+       </div>
+       <div class="staircase-route" aria-label="Cầu thang chéo nhận phòng theo thứ tự mức năng lượng"><button class="energy-stop" type="button">1s</button><span class="energy-link"></span> <button class="energy-stop" type="button">2s</button><span class="energy-link"></span> <button class="energy-stop" type="button">2p</button><span class="energy-link"></span> <button class="energy-stop" type="button">3s</button><span class="energy-link"></span> <button class="energy-stop" type="button">3p</button><span class="energy-link"></span> <button class="energy-stop" type="button">4s</button><span class="energy-link"></span> <button class="energy-stop" type="button">3d</button><span class="energy-link"></span> <button class="energy-stop" type="button">4p</button><span class="energy-link"></span> <button class="energy-stop" type="button">4d</button>
+       </div>
+      </section>
+     </div>
+    </section>
+    <section id="slide-two" class="presentation-slide slide-two" aria-label="Slide 2: Khách sạn electron"><img data-template-id="castle-image" class="canva-image slide-two-art" loading="lazy" src="https://images.pexels.com/photos/17892608/pexels-photo-17892608.jpeg" alt="A whimsical castle tower set against a vibrant blue sky, surrounded by lush greenery.">
+     <div class="slide-two-shade"></div>
+     <div class="slide-two-grid">
+      <header class="slide-two-heading">
+       <p data-template-id="slide-two-kicker" class="canva-text light-kicker" style="color: rgb(109, 77, 152); font-weight: 800; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">SLIDE 02 · MINH HOẠ KHÔNG GIAN</p>
+       <h1 data-template-id="slide-two-title" class="canva-text title-font light-title" style="color: rgb(16, 77, 99); font-weight: 800; font-style: normal; font-size: 32px;">Khách sạn electron đang mở phòng</h1>
+       <p data-template-id="slide-two-intro" class="canva-text light-intro" style="color: rgb(53, 97, 110); font-weight: 400; font-style: normal; font-size: 18px; line-height: 1.6;">Sảnh chờ chứa các electron, còn các tầng là những mức năng lượng. Nhấp vào phòng để quan sát trạng thái nhận phòng.</p>
+      </header>
+      <aside data-template-id="lobby-card" class="canva-card lobby-card" style="background: rgba(224, 255, 246, 0.82);"><img data-template-id="lobby-image" class="canva-image" loading="lazy" src="https://images.pexels.com/photos/35747340/pexels-photo-35747340.jpeg" alt="Elegant minimalist hotel lobby featuring a modern reception desk and transparent decorative spheres.">
+       <div class="lobby-content">
+        <p data-template-id="lobby-kicker" class="canva-text m-0 text-xs font-extrabold uppercase tracking-[.16em]" style="color: rgb(109, 77, 152); font-weight: 800; font-style: normal; font-size: 16px; letter-spacing: 0.08rem;">KHU LỄ TÂN</p>
+        <h2 data-template-id="lobby-title" class="canva-text title-font mt-2 mb-0" style="color: rgb(16, 77, 99); font-weight: 700; font-style: normal; font-size: 24px;">Sảnh chờ electron</h2>
+        <p data-template-id="lobby-copy" class="canva-text mt-3 mb-0 leading-relaxed" style="color: rgb(82, 100, 112); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.55;">Mỗi electron chờ được dẫn đến căn phòng orbital phù hợp theo sơ đồ cầu thang chéo.</p>
+        <div class="element-picker"><label data-template-id="element-picker-label" class="canva-text" for="element-select" style="color: rgb(66, 109, 114); font-weight: 800; font-style: normal; font-size: 16px;">Chọn nguyên tố</label> <select id="element-select" class="canva-input" aria-describedby="element-hint"> <option value="O">O · Oxygen · Z=8</option><option value="Ne">Ne · Neon · Z=10</option><option value="Na">Na · Sodium · Z=11</option><option value="Mg">Mg · Magnesium · Z=12</option><option value="Al">Al · Aluminium · Z=13</option><option value="P">P · Phosphorus · Z=15</option><option value="S">S · Sulfur · Z=16</option><option value="Mn">Mn · Manganese · Z=25</option><option value="Fe">Fe · Iron · Z=26</option> </select>
+         <p id="element-hint" data-template-id="element-picker-hint" class="canva-text" style="color: rgb(82, 100, 112); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.4;">Kéo từng electron vào phòng orbital đúng quy tắc.</p>
+        </div>
+        <div id="electron-tray" class="electron-row" aria-label="Các electron chờ nhận phòng"></div>
+        <p id="electron-count" class="mt-3 mb-0 text-sm font-bold text-cyan-900" aria-live="polite"></p>
+       </div>
+      </aside>
+      <section data-template-id="hotel-board" class="canva-panel hotel-board" style="background: rgb(255, 255, 255);">
+       <header data-template-id="hotel-board-heading" class="canva-banner hotel-board-header" style="background: linear-gradient(90deg, rgb(5, 126, 171), rgb(14, 184, 189) 63%, rgb(85, 200, 117));">
+        <div>
+         <p data-template-id="hotel-kicker" class="canva-text text-xs font-bold uppercase tracking-[.16em]" style="color: rgb(229, 255, 243); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.08rem;">LÂU ĐÀI ORBITAL</p>
+         <h2 data-template-id="hotel-title" class="canva-text title-font" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">Các tầng và khu phòng</h2>
+        </div><i data-lucide="building-2" class="h-10 w-10" aria-hidden="true"></i>
+       </header>
+       <div class="hotel-floors">
+        <div class="floor-row">
+         <div data-template-id="floor-one" class="canva-tag floor-label" style="background: linear-gradient(rgb(61, 195, 140), rgb(7, 133, 177)); color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">TẦNG 1</div>
+         <div class="subshell-row">
+          <div data-template-id="subshell-one" class="canva-panel subshell-box" style="background: rgb(247, 255, 255);">
+           <div class="room-row"><button class="orbital-room is-open" type="button" aria-label="Orbital 1s">1s</button>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="floor-row">
+         <div data-template-id="floor-two" class="canva-tag floor-label" style="background: linear-gradient(rgb(61, 195, 140), rgb(7, 133, 177)); color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">TẦNG 2</div>
+         <div class="subshell-row">
+          <div data-template-id="subshell-two-s" class="canva-panel subshell-box" style="background: rgb(247, 255, 255);">
+           <div class="room-row">
+            <button class="orbital-room is-open" type="button" aria-label="Orbital 2s">2s</button>
+           </div>
+          </div>
+          <div data-template-id="subshell-two-p" class="canva-panel subshell-box" style="background: rgb(247, 255, 255);">
+           <div class="room-row"><button class="orbital-room is-open" type="button" aria-label="Orbital 2p một">2p</button> <button class="orbital-room is-open" type="button" aria-label="Orbital 2p hai">2p</button> <button class="orbital-room is-open" type="button" aria-label="Orbital 2p ba">2p</button>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="floor-row">
+         <div data-template-id="floor-three" class="canva-tag floor-label" style="background: linear-gradient(rgb(61, 195, 140), rgb(7, 133, 177)); color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">TẦNG 3</div>
+         <div class="subshell-row">
+          <div data-template-id="subshell-three-s" class="canva-panel subshell-box" style="background: rgb(247, 255, 255);">
+           <div class="room-row">
+            <button class="orbital-room" type="button" aria-label="Orbital 3s">3s</button>
+           </div>
+          </div>
+          <div data-template-id="subshell-three-p" class="canva-panel subshell-box" style="background: rgb(247, 255, 255);">
+           <div class="room-row"><button class="orbital-room" type="button" aria-label="Orbital 3p một">3p</button> <button class="orbital-room" type="button" aria-label="Orbital 3p hai">3p</button> <button class="orbital-room" type="button" aria-label="Orbital 3p ba">3p</button>
+           </div>
+          </div>
+          <div data-template-id="subshell-three-d" class="canva-panel subshell-box" style="background: rgb(247, 255, 255);">
+           <div class="room-row"><button class="orbital-room" type="button" aria-label="Orbital 3d một">3d</button> <button class="orbital-room" type="button" aria-label="Orbital 3d hai">3d</button> <button class="orbital-room" type="button" aria-label="Orbital 3d ba">3d</button> <button class="orbital-room" type="button" aria-label="Orbital 3d bốn">3d</button> <button class="orbital-room" type="button" aria-label="Orbital 3d năm">3d</button>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="floor-row">
+         <div data-template-id="floor-four" class="canva-tag floor-label" style="background: linear-gradient(rgb(61, 195, 140), rgb(7, 133, 177)); color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">TẦNG 4</div>
+         <div class="subshell-row">
+          <div data-template-id="subshell-four-s" class="canva-panel subshell-box" style="background: rgb(247, 255, 255);">
+           <div class="room-row">
+            <button class="orbital-room" type="button" aria-label="Orbital 4s">4s</button>
+           </div>
+          </div>
+          <div data-template-id="subshell-four-p" class="canva-panel subshell-box" style="background: rgb(247, 255, 255);">
+           <div class="room-row">
+            <button class="orbital-room" type="button" aria-label="Orbital 4p một">4p</button> <button class="orbital-room" type="button" aria-label="Orbital 4p hai">4p</button> <button class="orbital-room" type="button" aria-label="Orbital 4p ba">4p</button>
+           </div>
+          </div>
+          <div data-template-id="next-rooms-indicator" class="canva-text flex items-center justify-center px-2 text-3xl font-extrabold text-cyan-800" aria-label="Các phòng tiếp theo" style="color: rgb(7, 139, 181); font-weight: 800; font-style: normal; font-size: 32px; letter-spacing: 0.18rem;">...</div>
+         </div>
+        </div>
+       </div>
+      </section>
+      <footer data-template-id="configuration-strip" class="canva-banner configuration-strip" style="background: rgba(3, 68, 88, 0.62);">
+       <div>
+        <h2 id="configuration-title" class="title-font"></h2>
+        <p data-template-id="configuration-copy" class="canva-text" style="color: rgb(229, 255, 250); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.55;">Khi 10 electron đã nhận đủ phòng, các orbital 1s, 2s và 2p đều được lấp đầy.</p>
+       </div>
+       <div data-template-id="configuration-code" class="canva-text configuration-code" style="background: rgb(23, 59, 89); color: rgb(217, 255, 236); font-weight: 800; font-size: 23px; letter-spacing: 0.05rem;"></div>
+      </footer>
+     </div>
+    </section>
+    <nav class="slide-dots" aria-label="Chọn slide"><button class="slide-dot is-active" type="button" data-slide-target="slide-one" aria-label="Đi tới slide 1"></button> <button class="slide-dot" type="button" data-slide-target="slide-two" aria-label="Đi tới slide 2"></button>
+    </nav>
+   </div>
+  </main>
+  <script src="/_sdk/9a95f4c89f9d329a.editing_sdk.js" integrity="sha512-uqCEJTMLGkNaerhDaIXaCaksHwhGfiODxp6KAGyGJ3KnMlKU0zBHiRrGR0sESZuM3JlrF8iM9IVZakKW237LEQ=="></script>
+  <script>
+    const slides = [...document.querySelectorAll(".presentation-slide")];
+    const controls = [...document.querySelectorAll("[data-slide-target]")];
+
+    function showSlide(id) {
+      slides.forEach(slide => slide.classList.toggle("is-active", slide.id === id));
+      controls.forEach(control => {
+        const active = control.dataset.slideTarget === id;
+        control.classList.toggle("is-active", active);
+        if (control.classList.contains("slide-control")) {
+          control.setAttribute("aria-pressed", String(active));
+        }
+      });
+    }
+
+    controls.forEach(control => {
+      control.addEventListener("click", () => showSlide(control.dataset.slideTarget));
+    });
+
+    document.addEventListener("keydown", event => {
+      const currentIndex = slides.findIndex(slide => slide.classList.contains("is-active"));
+      if (event.key === "ArrowRight") showSlide(slides[(currentIndex + 1) % slides.length].id);
+      if (event.key === "ArrowLeft") showSlide(slides[(currentIndex - 1 + slides.length) % slides.length].id);
+    });
+
+    document.querySelectorAll(".energy-stop").forEach(stop => {
+      stop.addEventListener("click", () => {
+        document.querySelectorAll(".energy-stop").forEach(item => item.classList.toggle("is-highlighted", item === stop));
+      });
+    });
+
+    const elementConfigurations = {O:[2,6],Ne:[2,8],Na:[2,8,1],Mg:[2,8,2],Al:[2,8,3],P:[2,8,5],S:[2,8,6],Mn:[2,8,13,2],Fe:[2,8,14,2]};
+    const elementNotations = {O:"1s²  2s²  2p⁴",Ne:"1s²  2s²  2p⁶",Na:"1s²  2s²  2p⁶  3s¹",Mg:"1s²  2s²  2p⁶  3s²",Al:"1s²  2s²  2p⁶  3s²  3p¹",P:"1s²  2s²  2p⁶  3s²  3p³",S:"1s²  2s²  2p⁶  3s²  3p⁴",Mn:"1s²  2s²  2p⁶  3s²  3p⁶  4s²  3d⁵",Fe:"1s²  2s²  2p⁶  3s²  3p⁶  4s²  3d⁶"};
+    const tray = document.getElementById("electron-tray");
+    const electronCount = document.getElementById("electron-count");
+    const configurationTitle = document.getElementById("configuration-title");
+    const rooms = [...document.querySelectorAll(".orbital-room")];
+    const select = document.getElementById("element-select");
+    let electronId = 0;
+    function renderElectrons() {
+      const counts = elementConfigurations[select.value];
+      tray.replaceChildren();
+      rooms.forEach(room => { room.classList.remove("is-open", "is-full"); const holder = room.querySelector(".orbital-electrons"); if (holder) holder.remove(); });
+      const totalElectrons = counts.reduce((sum, count) => sum + count, 0);
+      electronCount.dataset.total = String(totalElectrons);
+      electronCount.textContent = `${select.value}: ${totalElectrons} electron đang chờ nhận phòng`;
+      configurationTitle.textContent = `Cấu hình electron của ${select.value} (Z = ${totalElectrons})`;
+      configurationCode.textContent = elementNotations[select.value];
+      counts.flatMap((count, shell) => Array.from({length:count}, (_, index) => ({shell,index}))).forEach(({shell,index}) => {
+        const electron = document.createElement("span");
+        electron.className = "electron-dot";
+        electron.textContent = "e−";
+        electron.draggable = true;
+        electron.dataset.shell = String(shell + 1);
+        electron.dataset.electronId = String(++electronId);
+        electron.setAttribute("aria-label", `Electron ${shell + 1}`);
+        electron.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", electron.dataset.electronId));
+        tray.appendChild(electron);
+      });
+    }
+    select.addEventListener("change", renderElectrons);
+    function roomGroup(room){ return room.closest(".subshell-box"); }
+    function roomOccupancy(room){ return room.querySelectorAll(".spin-electron").length; }
+    function refreshRoom(room){
+      const occupied = roomOccupancy(room);
+      room.classList.toggle("is-open", occupied > 0);
+      room.classList.toggle("is-full", occupied === 2);
+    }
+    function addSpinElectron(room){
+      let holder = room.querySelector(".orbital-electrons");
+      if (!holder) { holder = document.createElement("span"); holder.className = "orbital-electrons"; room.appendChild(holder); }
+      const spin = document.createElement("span");
+      spin.className = `spin-electron${holder.children.length ? " second" : ""}`;
+      spin.textContent = holder.children.length ? "↓" : "↑";
+      spin.setAttribute("aria-label", holder.children.length ? "Spin xuống" : "Spin lên");
+      holder.appendChild(spin);
+      refreshRoom(room);
+    }
+    const configurationCode = document.querySelector('[data-template-id="configuration-code"]');
+    const configurationOrder = [
+      ["1s", 1], ["2s", 2], ["2p", 3], ["3s", 4], ["3p", 5],
+      ["4s", 6], ["3d", 7], ["4p", 8], ["4d", 9]
+    ];
+    function updateConfiguration(){
+      const grouped = new Map();
+      rooms.forEach(room => {
+        const label = room.textContent.replace(/[↑↓]/g, "").trim();
+        grouped.set(label, (grouped.get(label) || 0) + roomOccupancy(room));
+      });
+      const notation = configurationOrder
+        .map(([label]) => [label, grouped.get(label) || 0])
+        .filter(([, count]) => count > 0)
+        .map(([label, count]) => `${label}${["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"][count] || `^${count}`}`)
+        .join("  ");
+      configurationCode.textContent = notation || "Chưa có electron được nhận phòng";
+      const placed = [...rooms].reduce((sum, room) => sum + roomOccupancy(room), 0);
+      configurationCode.classList.toggle("is-revealed", placed === Number(electronCount.dataset.total));
+    }
+    function roomLabel(room){
+      return room.getAttribute("aria-label").replace("Orbital ", "").split(" ")[0];
+    }
+    function hundAllows(room){
+      const orbitalRooms = [...roomGroup(room).querySelectorAll(".orbital-room")];
+      if (orbitalRooms.length <= 1) return true;
+      const occupiedRooms = orbitalRooms.filter(item => roomOccupancy(item) > 0).length;
+      // In a p/d subshell, fill each empty orbital before pairing any.
+      return roomOccupancy(room) === 0
+        ? occupiedRooms < orbitalRooms.length
+        : occupiedRooms === orbitalRooms.length;
+    }
+    function followsEnergyOrder(room){
+      const order = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "4d"];
+      const targetLabel = roomLabel(room);
+      const targetIndex = order.indexOf(targetLabel);
+      if (targetIndex < 0) return false;
+      // A room is valid when every earlier subshell has reached capacity.
+      for (let index = 0; index < targetIndex; index++) {
+        const label = order[index];
+        const capacity = rooms.filter(item => roomLabel(item) === label).length * 2;
+        const occupied = rooms.filter(item => roomLabel(item) === label).reduce((sum, item) => sum + roomOccupancy(item), 0);
+        if (occupied < capacity) return false;
+      }
+      return roomOccupancy(room) < 2;
+    }
+    rooms.forEach(room => {
+      room.addEventListener("click", () => { room.classList.toggle("is-open"); });
+      room.addEventListener("dragover", event => { event.preventDefault(); room.classList.add("is-drag-over"); });
+      room.addEventListener("dragleave", () => room.classList.remove("is-drag-over"));
+      room.addEventListener("drop", event => {
+        event.preventDefault();
+        room.classList.remove("is-drag-over");
+        const electron = [...tray.children].find(item => item.dataset.electronId === event.dataTransfer.getData("text/plain"));
+        if (!electron || electron.classList.contains("is-placed") || roomOccupancy(room) >= 2 || !followsEnergyOrder(room) || !hundAllows(room)) return;
+        addSpinElectron(room);
+        updateConfiguration();
+        // Giữ nguyên hình ảnh electron trong sảnh để người học luôn thấy đủ số electron.
+        electron.classList.add("is-placed");
+        electron.draggable = false;
+        const remaining = tray.querySelectorAll(".electron-dot:not(.is-placed)").length;
+        electronCount.textContent = `${select.value}: ${electronCount.dataset.total} electron · còn ${remaining} electron chờ nhận phòng`;
+      });
+    });
+    renderElectrons();
+    updateConfiguration();
+    lucide.createIcons();
+  </script>
+ 
+</body></html>
